@@ -29,6 +29,11 @@ end
 % e:	the error of the ith measurement
 function e = error_function(i, X, Z)
   % TODO compute the error of each measurement
+
+  z_i = Z(i,:);
+  e = z_i(1:3) - X*z_i(4:6); 
+
+
 end
 
 % derivative of the error function for the ith measurement in Z
@@ -37,4 +42,16 @@ end
 % J:	the jacobian of the ith measurement
 function J = jacobian(i, Z)
   % TODO compute the Jacobian
+
+
+  u_i = Z(i,4:6);
+
+  J = [u_i zeros(1,6); 
+      zeros(1,3) u_i zeros(1,3);
+      zeros(1,6)  u_i]
 end
+
+
+
+
+
