@@ -12,11 +12,24 @@ function X = ls_calibrate_odometry(Z)
   X = eye(3); 
 
   % TODO: initialize H and b of the linear system
-  
+  H = zeros(9,9);
+  b = zeros(1,9);
+  omega = eye(3);
+
   % TODO: loop through the measurements and update H and b
   % You may call the functions error_function and jacobian, see below
   % We assume that the information matrix is the identity.
 
+  for i = 1:rows(Z)
+	J = jacobian(i,Z);
+	e = error_function(i,X,Z); 
+	
+	H += J'*omega*J;
+	b += e'*omega*J;
+
+  end
+  
+  X - inv(H)*b; 
   % TODO: solve and update the solution
 end
 
