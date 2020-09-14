@@ -14,5 +14,17 @@ function T = compute_trajectory(U)
   % Note that U(i) results in T(i+1).
   % T(i+1) can be computed by calling t2v(currentPose)
   % after computing the current pose of the robot
+  for i = 1:rows(U)
+
+    u = U(i,:);
+    u_h = v2t(u);
+    currentPose = currentPose*u_h;
+    
+    T(i,:) = t2v(currentPose);
+   
+    
+
+
+  end
 
 end
