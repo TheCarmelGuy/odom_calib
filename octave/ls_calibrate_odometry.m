@@ -15,9 +15,8 @@ function X = ls_calibrate_odometry(Z)
 
   % TODO: initialize H and b of the linear system
 
-  b = zeros(1,9);
   H = zeros(9,9);
-
+  b = zeros(1,9);
 
   % TODO: loop through the measurements and update H and b
   % You may call the functions error_function and jacobian, see below
@@ -35,8 +34,11 @@ function X = ls_calibrate_odometry(Z)
 
   dx = reshape(-inv(H)*b',3,3); 
 
-  size(dx)
-  X = X + dx; 
+  X = X + dx;
+
+
+
+
 end
 
 % this function computes the error of the i^th measurement in Z
